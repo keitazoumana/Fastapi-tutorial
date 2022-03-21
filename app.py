@@ -1,30 +1,42 @@
-import packages.data_processor as dp
-import joblib
+# Load the libraries
+from fastapi import FastAPI, HTTPException
+from joblib import load
 
 # Load the model
-spam_clf = joblib.load(open('./models/spam_detector_model.pkl','rb'))
+spam_clf = load(open('./models/spam_detector_model.pkl','rb'))
 
 # Load vectorizer
-vectorizer = joblib.load(open('./vectors/vectorizer.pickle', 'rb'))
+vectorizer = load(open('./vectors/vectorizer.pickle', 'rb'))
 
-### MAIN FUNCTION ###
-def main(title = "Your Awesome Streamlit Text classification App".upper()):
-    st.markdown("<h1 style='text-align: center; font-size: 65px; color: #4682B4;'>{}</h1>".format(title), 
-    unsafe_allow_html=True)
-    st.image("./images/message-image.jpeg")
-    info = ''
-    
-    with st.expander("1. Ckeck if your text is a spam or ham 😀"):
-        text_message = st.text_input("Please enter your message")
-        if st.button("Predict"):
-            prediction = spam_clf.predict(vectorizer.transform([text_message]))
 
-            if(prediction[0] == 0):
-                info = 'Ham'
+# Initialize an instance of FastAPI
+app = FastAPI()
 
-            else:
-                info = 'Spam'
-            st.success('Prediction: {}'.format(info))
+# Define the default route 
+@app.get("/")
+def root():
+    return {"message": "Welcome to Your Sentiment Classification FastAPI"}
 
-if __name__ == "__main__":
-    main()
+
+# Define the route to the sentiment predictor
+@app.post("/predict_sentiment")
+def predict_sentiment(text_message):
+
+    polarity = ""
+
+    if(not(text_message)):
+        raise HTTPException(status_code=400, 
+                            detail = "Please Provide a valid text message")
+
+    prediction = spam_clf.predict(vectorizer.transform([text_message]))
+
+    if(prediction[0] == 0):
+        polarity = "Ham"
+
+    elif(prediction[0] == 1):
+        polarity = "Spam"
+        
+    return {
+            "text_message": text_message, 
+            "sentiment_polarity": polarity
+           }

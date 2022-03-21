@@ -11,13 +11,12 @@
 ├── vectors                        <- Trained and serialized vector
 │   ├── vectorizer.pkl
 │
-├── notebooks                      <- Jupyter notebooks.
+├── notebooks                      <- Jupyter notebooks folder.
+│   ├── Preprocess_Train.ipynb   
 │
-├── docker                         <- folder containing the docker file
+├── docker                         <- folder containing the docker files
 │   ├── Dockerfile
-│      
-├── images                         <- Images to be used by the streamlit app  
-│   ├── message-image.jpeg
+│   ├── docker-compose              
 │
 ├── packages                       <- The customized project packages containing utility functions 
 │       ├── __init__.py
@@ -29,7 +28,12 @@
 │
 ├── train_model.py                 <- Script to train the model
 │
-├── app.py                         <- The final streamlit app
+├── app.py                         <- The final Rest API file
+
+
+
+
+
 
 
 
