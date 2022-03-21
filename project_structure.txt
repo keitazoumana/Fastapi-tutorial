@@ -1,0 +1,36 @@
+├── @Author  : Zoumana Keita - Data Scientist 
+├── LICENSE
+├── README.md                      <- The top-level README for developers using this project.
+│
+├── data                           <- The folder containing the origininal data 
+│   ├── spam.csv
+│
+├── models                         <- Trained and serialized models, model predictions, or model summaries
+│   ├── spam_detector_model.pkl
+│
+├── vectors                        <- Trained and serialized vector
+│   ├── vectorizer.pkl
+│
+├── notebooks                      <- Jupyter notebooks.
+│
+├── docker                         <- folder containing the docker file
+│   ├── Dockerfile
+│      
+├── images                         <- Images to be used by the streamlit app  
+│   ├── message-image.jpeg
+│
+├── packages                       <- The customized project packages containing utility functions 
+│       ├── __init__.py
+│       ├── data_preprocessor.py
+│       └── model_trainer.py
+│   
+├── requirements.txt               <- The requirements file for reproducing the analysis environment, e.g.
+│                                       generated with `pip freeze > requirements.txt`
+│
+├── train_model.py                 <- Script to train the model
+│
+├── app.py                         <- The final streamlit app
+
+
+
+
