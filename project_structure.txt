@@ -15,8 +15,7 @@
 │   ├── Preprocess_Train.ipynb   
 │
 ├── docker                         <- folder containing the docker files
-│   ├── Dockerfile
-│   ├── docker-compose              
+│   ├── Dockerfile            
 │
 ├── packages                       <- The customized project packages containing utility functions 
 │       ├── __init__.py
